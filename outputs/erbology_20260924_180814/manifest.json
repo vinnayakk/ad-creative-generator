@@ -1,0 +1,43 @@
+{
+  "brand": "Erbology",
+  "brief_file": "erbology-hemp-seed-oil.json",
+  "generated_at": "2026-09-24T18:10:56.424428",
+  "variant_count": 5,
+  "variants": [
+    {
+      "variant_number": 1,
+      "headline": "One ingredient. Exactly what it says.",
+      "body": "Erbology Hemp Seed Oil is cold-pressed, organic, and made from a single ingredient: hemp seed. No blends, no extras, no glossary required.",
+      "cta": "Try your first bottle \u2014 15% off your first 200mL.",
+      "image_file": "erbology_variant_1.png"
+    },
+    {
+      "variant_number": 2,
+      "headline": "Not CBD oil. Just hemp seed oil.",
+      "body": "A lot of hemp products need explaining. This one doesn't: cold-pressed from hemp seeds, organic, single ingredient, and clearly labeled so you know exactly what's in the bottle.",
+      "cta": "Try your first bottle today.",
+      "image_file": "erbology_variant_2.png"
+    },
+    {
+      "variant_number": 3,
+      "headline": "What's actually in the bottle?",
+      "body": "Just organic hemp seeds, cold-pressed. That's the whole ingredient list \u2014 no additives, no fillers, nothing to decode.",
+      "cta": "See for yourself \u2014 try your first bottle.",
+      "image_file": "erbology_variant_3.png"
+    },
+    {
+      "variant_number": 4,
+      "headline": "A simple addition, made simply.",
+      "body": "Erbology Hemp Seed Oil is cold-pressed to keep things straightforward: organic hemp seed, nothing else. A usage card comes in every box so you know exactly how to start.",
+      "cta": "Try your first bottle.",
+      "image_file": "erbology_variant_4.png"
+    },
+    {
+      "variant_number": 5,
+      "headline": "Your first bottle, 15% off.",
+      "body": "Try Erbology Hemp Seed Oil for less: organic, cold-pressed, single ingredient, with a simple usage card included in the box.",
+      "cta": "Claim 15% off your first bottle.",
+      "image_file": "erbology_variant_5.png"
+    }
+  ]
+}

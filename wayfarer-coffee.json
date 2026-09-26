@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "type": "brand-brief",
+    "brand": "Wayfarer Coffee",
+    "status": "draft",
+    "created": "2026-09-23",
+    "tags": ["brand-brief", "marketing", "brand-template"]
+  },
+  "brand": {
+    "name": "Wayfarer Coffee",
+    "one_line_description": "A direct-trade coffee subscription that pays farmers before the harvest, not after.",
+    "mission": "To make specialty coffee's supply chain fair enough that farmers can plan a year ahead, not just survive one.",
+    "vision": "In five years, Wayfarer is the brand coffee farmers recommend to each other, not just the one drinkers recommend.",
+    "core_values": [
+      "Pay first, roast second",
+      "Traceability over marketing copy",
+      "Slow growth over fast scale"
+    ],
+    "personality": ["Grounded", "Candid", "Unhurried"],
+    "positioning_statement": "For people who already care where their coffee comes from, Wayfarer is the subscription that pays farmers upfront, because a fair price shouldn't depend on how well the harvest sells.",
+    "competitors": ["Blue Bottle", "Trade Coffee", "local specialty roasters"],
+    "differentiation": "Farmers are paid in full before the beans ship, not on consignment after retail sales — the risk sits with us, not them."
+  },
+  "product": {
+    "name": "Wayfarer Subscription",
+    "description": "A recurring shipment of single-origin coffee, roasted within 72 hours of your delivery window.",
+    "key_features": [
+      "Farmer profile and payment date printed on every bag",
+      "Roast-to-ship window under 72 hours",
+      "Skip, swap, or pause any time from the account page"
+    ],
+    "top_benefits": [
+      "You know exactly whose harvest you're funding",
+      "Fresher coffee than anything on a grocery shelf",
+      "No guilt about where your money actually goes"
+    ],
+    "proof_points": "94% of partner farms have been paid in full before shipment for three consecutive seasons; verified by an independent co-op auditor.",
+    "category": "Most people currently buy bagged specialty coffee from a grocery store or a local roaster with no visibility into farmer payment terms."
+  },
+  "audience": {
+    "primary_audience": "Urban professionals, 28-45, who already spend $15+ on coffee weekly and read ingredient labels out of habit.",
+    "demographics": "Household income $70k+, city or inner-suburb dwellers, college-educated.",
+    "psychographics": "Values transparency over brand story; skeptical of vague sustainability claims; will pay a premium if the premium is explained.",
+    "pain_points": [
+      "Suspicious that 'fair trade' labels are marketing, not practice",
+      "Tired of coffee going stale before they finish the bag",
+      "Wants to support farmers directly but has no way to verify it"
+    ],
+    "desired_outcome": "Feeling confident their coffee spend is doing what they think it's doing, without having to research it themselves.",
+    "channels": ["Instagram", "coffee-focused newsletters", "farmers markets", "word of mouth"],
+    "objections": "Price point is higher than grocery store coffee; subscription fatigue from other services.",
+    "secondary_audience": "Independent cafes looking for a wholesale partner with verifiable sourcing claims."
+  },
+  "tone": {
+    "voice_words": ["Plainspoken", "Warm", "Unromantic"],
+    "we_are": [
+      "Specific about numbers and dates",
+      "Willing to say when a harvest was mediocre",
+      "Written like one person talking to another"
+    ],
+    "we_are_not": [
+      "Poetic about 'the journey of the bean'",
+      "Vague about pricing or payment terms",
+      "Urgent or scarcity-driven in marketing"
+    ],
+    "reference_brands": ["Patagonia (candor about tradeoffs)", "Oatly (plain language, not cute)"],
+    "vocabulary": {
+      "use": ["paid before harvest", "traceable", "this season's lot"],
+      "avoid": ["journey", "artisanal", "ethically sourced (unverified)"]
+    },
+    "example_line": "This bag paid Marisol's farm in full, six weeks before a single bean was roasted."
+  },
+  "offer": {
+    "core_offer": "First bag free with any subscription plan, cancel anytime.",
+    "pricing_packaging": "$19/month for 12oz biweekly, $34/month for 12oz weekly; discounts for 3- and 6-month prepay.",
+    "call_to_action": "Start your first bag free",
+    "urgency_reason": "Current lot from Marisol's farm in Huila sells out roughly every 3 weeks.",
+    "guarantee": "Full refund on your first bag if it's not the best coffee you've had delivered.",
+    "post_conversion": "Welcome email introduces the current farmer, payment date, and expected next-lot rotation."
+  }
+}

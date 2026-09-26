@@ -1,0 +1,15 @@
+{
+  "brand": "Erbology",
+  "brief_file": "erbology-hemp-seed-oil.json",
+  "generated_at": "2026-09-24T18:59:56.805713",
+  "variant_count": 1,
+  "variants": [
+    {
+      "variant_number": 1,
+      "headline": "One ingredient. Exactly what it says.",
+      "body": "Organic, cold-pressed hemp seed oil \u2014 nothing added, nothing to decode. Not CBD, just hemp seed oil, pressed and bottled simply.",
+      "cta": "Try your first bottle \u2014 15% off your first 200mL.",
+      "image_file": "erbology_variant_1.png"
+    }
+  ]
+}

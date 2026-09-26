@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "type": "brand-brief",
+    "brand": "Erbology",
+    "status": "draft",
+    "created": "2026-09-24",
+    "tags": ["brand-brief", "marketing", "brand-template"]
+  },
+  "brand": {
+    "name": "Erbology",
+    "one_line_description": "Organic, cold-pressed hemp seed oil in light-protecting amber glass, made for a simple daily body-balance ritual.",
+    "mission": "To make plant-based daily wellness simple enough that anyone can read the label once and know exactly what they're putting in their body.",
+    "vision": "In five years, Erbology is the single-ingredient plant oil people reach for by default, and the one they recommend without needing to explain it.",
+    "core_values": [
+      "One ingredient, clearly labeled",
+      "Clarity over claims",
+      "Small daily rituals over big promises"
+    ],
+    "personality": ["Calm", "Precise", "Understated"],
+    "positioning_statement": "For people who want one simple, plant-based addition to their daily routine, Erbology Hemp Seed Oil is the organic, cold-pressed oil that says exactly what it is, because a wellness product shouldn't need a glossary.",
+    "competitors": [
+      "Manitoba Harvest",
+      "Nutiva",
+      "Premium cold-pressed seed oils (flax, walnut)",
+      "CBD wellness oils (shelf neighbours, often confused with hemp seed oil)"
+    ],
+    "differentiation": "A single-ingredient hemp seed oil presented with apothecary-modern restraint: amber glass to protect the oil, a label that names the ingredient and process plainly, and a hemp leaf used as botanical illustration rather than a lifestyle signal."
+  },
+  "product": {
+    "name": "Erbology Hemp Seed Oil (Body Balance)",
+    "description": "A 200mL (6.8 fl oz) bottle of organic, cold-pressed hemp seed oil in amber glass with a black screw cap, positioned under the Body Balance banner. Intended for daily use as a finishing oil or simple wellness addition. It is both edible and topical. Recommended serving: 1 teaspoon.",
+    "key_features": [
+      "Organic, cold-pressed hemp seed oil, with a single ingredient named on the label. No additives or blends.",
+      "Amber glass bottle protects the oil from light",
+      "Front label shows ingredient, process, range and volume (200mL / 6.8 fl oz) at a glance"
+    ],
+    "top_benefits": [
+      "A simple, single-ingredient source of plant-based omega-3 and omega-6 fats. Lab tested.",
+      "A nutty, green flavour that works drizzled over salads, yoghurt, or smoothies",
+      "One bottle, one ingredient, no label to decode"
+    ],
+    "proof_points": "Organic certified by OSA. Licence number: 1234567890. Lab tested for less than 1% THC. Fatty-acid profile (ALA:LA ratio) is 6:1. Press date and batch number available on every bottle.",
+    "category": "Most people currently choose between everyday cooking oils, fish-oil or omega supplements, and CBD oils, and are unsure where hemp seed oil fits, or that it comes from the seed and is not CBD oil."
+  },
+  "audience": {
+    "primary_audience": "Health-conscious adults, 25-45, who already buy premium oils or take a daily supplement and read ingredient labels out of habit.",
+    "demographics": "Urban and inner-suburb dwellers, college-educated, mid-to-upper household income, shopping at natural food stores, specialty grocers, and online.",
+    "psychographics": "Values purity and clarity over trends; skeptical of miracle claims and detox language; drawn to minimal, apothecary-style design; will pay a premium for organic and cold-pressed if the difference is explained.",
+    "pain_points": [
+      "Unsure how hemp seed oil differs from CBD oil, and wary of the cannabis association",
+      "Tired of wellness products with long ingredient lists and vague promises",
+      "Doesn't know how to use a specialty oil day to day, so it sits unopened"
+    ],
+    "desired_outcome": "Feeling like they've added one simple, trustworthy thing to their routine, without having to research fatty acids or decode a label.",
+    "channels": [
+      "Instagram",
+      "wellness and nutrition newsletters",
+      "natural food stores and specialty grocers",
+      "word of mouth"
+    ],
+    "objections": "Price is higher than olive or flax oil; confusion with cannabis or CBD products and questions about THC; unsure of the taste; unrefined hemp oil is not suited to high-heat cooking, and people don't know how else to use it.",
+    "secondary_audience": "Independent wellness retailers, natural grocers, and practitioners looking for a clearly labeled, single-ingredient plant oil to stock or recommend."
+  },
+  "tone": {
+    "voice_words": ["Calm", "Clear", "Understated"],
+    "we_are": [
+      "Specific about what is in the bottle and how it was made",
+      "Careful with health claims: we describe the oil, we don't promise outcomes",
+      "Written like a knowledgeable friend, not a wellness guru"
+    ],
+    "we_are_not": [
+      "Making medical, cure-all, or 'detox' claims",
+      "Leaning on cannabis puns or 'high' wordplay",
+      "Mystical or vague about what 'balance' means",
+      "Urgent or scarcity-driven in marketing"
+    ],
+    "reference_brands": [
+      "Aesop (restrained, literate, apothecary-modern)",
+      "Grown Alchemist (clinical-botanical minimalism)"
+    ],
+    "vocabulary": {
+      "use": ["organic", "cold-pressed", "single ingredient", "hemp seed oil"],
+      "avoid": [
+        "miracle",
+        "detox",
+        "cure",
+        "superfood (unverified)",
+        "CBD (except to clarify that this is not CBD oil)"
+      ]
+    },
+    "example_line": "Organic hemp seeds, cold-pressed. Nothing else in the bottle."
+  },
+  "offer": {
+    "core_offer": "15% off your first 200mL bottle, with a simple usage card in the box.",
+    "pricing_packaging": "One 200mL (6.8 fl oz) amber glass bottle at $25; consider a 2-bottle bundle and an optional subscription every 6-8 weeks. At one teaspoon (5mL) a day, a bottle lasts about 40 days.",
+    "call_to_action": "Try your first bottle",
+    "urgency_reason": "Deliberately none, in keeping with the calm brand voice. If a reason to act is needed: oil is best used within its recommended window after opening, so we suggest one bottle at a time rather than stocking up.",
+    "guarantee": "Full refund on your first bottle within 30 days if it isn't what you expected.",
+    "post_conversion": "Welcome email explains what hemp seed oil is (and that it is not CBD oil), three easy ways to use it, how to store it, and when to reorder."
+  }
+}

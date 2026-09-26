@@ -1,0 +1,5 @@
+fastapi[standard]
+anthropic
+openai
+python-dotenv
+pydantic

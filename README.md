@@ -1,1 +1,1 @@
-# ai-app-template
+# ad-creative-generator

@@ -36,7 +36,7 @@
 
 ## Stack
 
-<!-- One line: Python, FastAPI, Pydantic, [image model/API], [LLM], Streamlit, Docker, GitHub Actions. -->
+<!-- In one line: Python, FastAPI, Pydantic, [image model/API], [LLM], Streamlit, Docker, GitHub Actions. -->
 
 ## How to run
 

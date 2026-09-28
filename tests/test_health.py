@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from ai_app_template.main import app
+from ad_creative_generator.main import app
 
 client = TestClient(app)
 

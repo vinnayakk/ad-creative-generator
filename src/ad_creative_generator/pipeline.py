@@ -7,8 +7,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-from ai_app_template.generate_copy import generate_copy
-from ai_app_template.generate_ad_image_brand import generate_image
+from ad_creative_generator.generate_copy import generate_copy
+from ad_creative_generator.generate_ad_image_brand import generate_image
 
 load_dotenv()
 
@@ -62,7 +62,7 @@ def run_pipeline(brief_path: str, count: int = 5):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python -m ai_app_template.pipeline <brief.json>")
+        print("Usage: python -m ad_creative_generator.pipeline <brief.json>")
         sys.exit(1)
 
     run_pipeline(sys.argv[1])

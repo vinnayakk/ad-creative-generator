@@ -17,6 +17,8 @@ def run_pipeline(brief_path: str, count: int = 5):
     with open(brief_path) as f:
         brief = json.load(f)
 
+    product_image_path = brief["product"]["image_file"]
+
     brand_name = brief["brand"]["name"]
     safe_name = brand_name.lower().replace(" ", "_")
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -29,7 +31,7 @@ def run_pipeline(brief_path: str, count: int = 5):
     rows = []
     for variant in variants:
         print(f"Generating image for variant {variant.variant_number}...")
-        image_path = generate_image(brief, variant.model_dump())
+        image_path = generate_image(brief, variant.model_dump(), product_image_path)
 
         destination = output_dir / Path(image_path).name
         shutil.move(image_path, destination)

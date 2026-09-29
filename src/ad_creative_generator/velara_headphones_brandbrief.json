@@ -1,0 +1,105 @@
+{
+  "metadata": {
+    "type": "brand-brief",
+    "brand": "Velara",
+    "status": "draft",
+    "created": "2026-09-28",
+    "tags": ["brand-brief", "marketing", "brand-template"]
+  },
+  "brand": {
+    "name": "Velara",
+    "one_line_description": "Premium wireless headphones built to disappear into sound, with automatic noise cancelling and all-day battery life.",
+    "mission": "To help people hear the parts of their day worth hearing, and cancel out the parts that aren't.",
+    "vision": "In five years, Velara is the headphone people put on the moment they need to think clearly, not just listen to music.",
+    "core_values": [
+      "Sound quality over feature bloat",
+      "Comfort for the whole day, not just the demo",
+      "Design that ages well, not a seasonal drop"
+    ],
+    "personality": ["Refined", "Immersive", "Calm"],
+    "positioning_statement": "For people who move all day between calls, commutes, and focus blocks, Velara is the headphone that automatically cancels the noise around you and wraps you in spatial sound, because switching modes shouldn't take a tap.",
+    "competitors": [
+      "Sony WH-1000X series",
+      "Bose QuietComfort Ultra",
+      "Apple AirPods Max"
+    ],
+    "differentiation": "Automatic noise cancelling that reads your environment in real time without opening an app, paired with spatial sound and a 40-hour battery that outlasts a full week of commutes on a single charge."
+  },
+  "product": {
+    "name": "Velara Headphones",
+    "image_file": "product_anc_headphones.png",
+    "description": "Over-ear wireless headphones in a soft stone-grey finish, with automatic noise cancelling, spatial sound, up to 40 hours of battery life, and Bluetooth 5.3 connectivity.",
+    "key_features": [
+      "Automatic noise cancelling that senses your environment and adjusts without manual switching",
+      "Spatial sound that repositions audio as you move your head",
+      "Up to 40 hours of battery life on a single charge",
+      "Bluetooth 5.3 for a stable, low-latency connection across devices"
+    ],
+    "top_benefits": [
+      "Walk into a loud office or train car and the noise drops out before you notice it's gone",
+      "Music, calls, and video feel like they're coming from around you, not just your ears",
+      "Charge once at the start of the week and forget about it until the weekend"
+    ],
+    "proof_points": "Rated for 40 hours of continuous playback with ANC and Bluetooth active; adaptive noise cancelling recalibrates to ambient sound every 400 milliseconds; comfort-tested across a full range of head shapes and sizes for sessions over 8 hours.",
+    "category": "Most people currently choose between noise-cancelling headphones that need manual mode switching and truly wireless earbuds that trade battery life and bass response for portability."
+  },
+  "audience": {
+    "primary_audience": "Working professionals, 26-45, who spend two or more hours a day in headphones between commuting, calls, and focus work.",
+    "demographics": "Urban professionals and hybrid or remote workers, mid-to-high household income, replace headphones every 2-3 years and buy premium electronics.",
+    "psychographics": "Values quality and design longevity over the newest feature list; frustrated by settings and apps that get in the way of just putting headphones on; treats headphones as a tool for controlling their environment, not just a music accessory.",
+    "pain_points": [
+      "Constantly switching ANC and transparency modes by hand throughout the day",
+      "Headphones dying mid-afternoon on longer days",
+      "Ear fatigue and discomfort after a few hours of continuous wear"
+    ],
+    "desired_outcome": "Putting the headphones on once in the morning and not thinking about battery, mode, or comfort again until they take them off at night.",
+    "channels": [
+      "Instagram",
+      "YouTube tech reviewers",
+      "in-store electronics retailers",
+      "word of mouth"
+    ],
+    "objections": "Price is higher than mainstream noise-cancelling headphones; skepticism that 'automatic' ANC actually beats manual mode switching; uncertainty about how spatial sound performs outside dedicated content.",
+    "secondary_audience": "Frequent flyers and business travelers who want one pair of headphones that handles flights, offices, and everyday commuting equally well."
+  },
+  "tone": {
+    "voice_words": ["Refined", "Confident", "Uncluttered"],
+    "we_are": [
+      "Specific about what the technology does, not just what it's called",
+      "Focused on everyday use cases: commutes, calls, open offices",
+      "Written the way a well-made product explains itself: briefly"
+    ],
+    "we_are_not": [
+      "Full of jargon about drivers, codecs, or chip names without explaining the benefit",
+      "Chasing every trend in 'immersive audio' marketing",
+      "Loud or hyperbolic about sound quality"
+    ],
+    "reference_brands": [
+      "Apple (restrained, product-led copy)",
+      "Bang & Olufsen (design-forward, unhurried)"
+    ],
+    "vocabulary": {
+      "use": [
+        "automatic noise cancelling",
+        "spatial sound",
+        "all-day battery",
+        "effortless"
+      ],
+      "avoid": [
+        "game-changing",
+        "revolutionary",
+        "best-in-class (unverified)",
+        "audiophile-grade (unverified)"
+      ]
+    },
+    "example_line": "Noise drops away automatically. You don't have to ask it to."
+  },
+  "offer": {
+    "core_offer": "10% off your first pair, plus a complimentary travel case.",
+    "pricing_packaging": "$349 per pair in Stone Grey and Graphite Black, with an optional two-year extended warranty at checkout.",
+    "call_to_action": "Hear the difference",
+    "urgency_reason": "Launch pricing ends when the current production run sells out.",
+    "guarantee": "30-day home trial with free returns if they're not the most comfortable headphones you've owned.",
+    "post_conversion": "Welcome email walks through pairing, where to find the noise-cancelling controls, and how to check battery level from the case."
+  }
+}

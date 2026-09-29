@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "type": "brand-brief",
+    "brand": "Riverbend Brewing Co.",
+    "status": "draft",
+    "created": "2026-09-28",
+    "tags": ["brand-brief", "marketing", "brand-template"]
+  },
+  "brand": {
+    "name": "Riverbend Brewing Co.",
+    "one_line_description": "A small coastal-forest brewery making clean, bright IPAs meant for the trailhead and the tideline alike.",
+    "mission": "To brew beer that tastes like the place it's made — clean, unforced, and better outside.",
+    "vision": "In five years, Riverbend is the beer in the cooler at every trailhead and dock on this coast, poured by the people who fish and hike it.",
+    "core_values": [
+      "Brewed for outside, not just for the bar",
+      "Clean ingredients, no shortcuts",
+      "Small batches, brewed close to home"
+    ],
+    "personality": ["Outdoorsy", "Unpretentious", "Crisp"],
+    "positioning_statement": "For people who'd rather be outside than in a taproom, Riverbend Brewing makes IPAs like Tide & Treetop that are bright, clean, and built to travel, because the best beer is the one you can actually take with you.",
+    "competitors": [
+      "Sierra Nevada",
+      "Deschutes Brewery",
+      "local independent coastal breweries"
+    ],
+    "differentiation": "Brewed and packaged specifically for outdoor use — cans built for coolers and packs, a hop profile tuned for bright flavor without heavy bitterness, and label art that marks a specific stretch of coast and forest rather than generic 'craft' branding."
+  },
+  "product": {
+    "name": "Tide & Treetop India Pale Ale",
+    "image_file": "product_ipa_beer.png",
+    "description": "A 330mL can of India Pale Ale at 6.5% ALC/VOL, brewed for bright hop character and a clean finish, packaged for the outdoors.",
+    "key_features": [
+      "6.5% ALC/VOL India Pale Ale",
+      "Bright hops with a clean, non-lingering finish",
+      "330mL can, sized and built for coolers, packs, and trail carry",
+      "Label art marking the specific coastline and forest the brewery takes its name from"
+    ],
+    "top_benefits": [
+      "A hop-forward IPA that doesn't leave a heavy, bitter aftertaste",
+      "A can format that travels easily to the trail, the beach, or the dock",
+      "A flavor and strength built for an afternoon outside, not a heavy night in"
+    ],
+    "proof_points": "Brewed in batches of under 500 barrels at a time; dry-hopped twice for aromatic brightness without added bitterness; named one of the coast's top new IPAs by two regional craft beer guides in its debut year.",
+    "category": "Most people reach for whatever IPA is on sale or already familiar from national craft beer brands, without a clear option built specifically for taking outdoors."
+  },
+  "audience": {
+    "primary_audience": "Outdoor-active adults, 25-40, who hike, fish, camp, or spend weekends near the coast and drink craft beer regularly.",
+    "demographics": "Coastal and mountain-town residents and weekend visitors, mixed income, buy craft beer by the case or four-pack from grocery stores, breweries, and outdoor retailers.",
+    "psychographics": "Prefers experiences over polish; skeptical of overly hoppy, bitter 'extreme' IPAs; wants a beer that fits into a day outside rather than being the main event.",
+    "pain_points": [
+      "Many IPAs are too bitter or heavy to drink more than one of in an afternoon outside",
+      "Glass bottles are impractical or against the rules on trails, beaches, and boats",
+      "Hard to find a local option that isn't either mass-market or overly niche"
+    ],
+    "desired_outcome": "Cracking a beer at the end of a hike or a day on the water that tastes bright and clean, without weighing down the pack or the afternoon.",
+    "channels": [
+      "Instagram",
+      "outdoor and fishing community groups",
+      "taproom and brewery events",
+      "grocery and bottle shop placement"
+    ],
+    "objections": "Price is higher than mainstream domestic beer; unfamiliar independent brand name; concern that 'IPA' means overly bitter for casual drinkers.",
+    "secondary_audience": "Outdoor gear shops, campgrounds, and marinas looking to stock a local beer that matches their customers' activities."
+  },
+  "tone": {
+    "voice_words": ["Easygoing", "Crisp", "Grounded"],
+    "we_are": [
+      "Specific about where and how the beer is made",
+      "Focused on real outdoor moments, not staged lifestyle shots",
+      "Written like someone describing a good day outside, not selling a beer"
+    ],
+    "we_are_not": [
+      "Extreme or bitter-forward in how we describe hop character",
+      "Preachy about sustainability without specifics",
+      "Using generic craft-beer cliches like 'hand-crafted' or 'brewed with passion'"
+    ],
+    "reference_brands": [
+      "Patagonia Provisions (outdoor-authentic, understated)",
+      "Fjällräven (unpretentious, activity-first)"
+    ],
+    "vocabulary": {
+      "use": [
+        "bright hops",
+        "clean finish",
+        "small batch",
+        "built for outside"
+      ],
+      "avoid": [
+        "extreme",
+        "hoppy bomb",
+        "crushable",
+        "hand-crafted (overused)",
+        "brewed with passion (overused)"
+      ]
+    },
+    "example_line": "Bright hops, clean finish, built to fit in a pack."
+  },
+  "offer": {
+    "core_offer": "Buy a 4-pack, get a Riverbend bottle opener and carabiner clip free.",
+    "pricing_packaging": "$14.99 per 4-pack of 330mL cans; available in 4-packs, 12-packs, and on tap at partner taprooms.",
+    "call_to_action": "Grab a 4-pack",
+    "urgency_reason": "Small-batch brewing means each release sells out before the next batch is ready, usually within 3-4 weeks.",
+    "guarantee": "If your first 4-pack isn't the beer you wanted for the trail, we'll swap it for another Riverbend style, no questions asked.",
+    "post_conversion": "Welcome email shares the story behind the Tide & Treetop label art, the next release date, and where to find Riverbend on tap nearby."
+  }
+}

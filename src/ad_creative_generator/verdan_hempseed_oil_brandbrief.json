@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "type": "brand-brief",
+    "brand": "Verdan",
+    "status": "draft",
+    "created": "2026-09-28",
+    "tags": ["brand-brief", "marketing", "brand-template"]
+  },
+  "brand": {
+    "name": "Verdan",
+    "one_line_description": "An everyday cooking oil, cold-pressed from hemp seed, made to bring plant-based Omega 3 and 6 into the kitchens people already cook in.",
+    "mission": "To make one plant-based swap — the cooking oil in your pantry — an easy, everyday source of good fats, without asking anyone to change how they cook.",
+    "vision": "In five years, Verdan is the oil families reach for the same way they reach for olive oil, because it's simply what's in the cupboard.",
+    "core_values": [
+      "Good food, plainly labeled",
+      "Everyday nutrition over occasional indulgence",
+      "Better tomorrow, one small swap at a time"
+    ],
+    "personality": ["Down-to-earth", "Nourishing", "Practical"],
+    "positioning_statement": "For home cooks who already care what's in their pantry, Verdan is the cold-pressed hempseed oil that brings plant-based Omega 3 and 6 into everyday cooking, because good nutrition should fit into the meals you already make.",
+    "competitors": [
+      "Filippo Berio and other mainstream olive oils",
+      "Spectrum Naturals",
+      "other cold-pressed specialty oils (flax, walnut)",
+      "wellness-positioned hemp oils"
+    ],
+    "differentiation": "A hemp seed oil sold and priced as an everyday cooking oil rather than a specialty wellness product, with a straightforward grocery-shelf label that leads with nutrition — Omega 3 and 6 — rather than ritual or lifestyle."
+  },
+  "product": {
+    "name": "Verdan Cold Pressed Hempseed Oil",
+    "image_file": "product_hempseed_cooking_oil.png",
+    "description": "A 500mL bottle of cold-pressed hempseed cooking oil, unrefined and plant-based, rich in Omega 3 and Omega 6, sized for regular use rather than occasional drizzling.",
+    "key_features": [
+      "Cold-pressed hempseed oil, unrefined and plant-based",
+      "Rich in Omega 3 and Omega 6 fatty acids",
+      "500mL bottle sized for everyday kitchen use",
+      "Clear, grocery-aisle labeling: what it is, what it's rich in, where it fits"
+    ],
+    "top_benefits": [
+      "An easy way to add plant-based Omega 3 and 6 to meals you're already cooking",
+      "A nutty, green flavor that works in dressings, drizzles, and finishing dishes",
+      "One bottle that covers what a fish-oil supplement does for some households"
+    ],
+    "proof_points": "Cold-pressed within 24 hours of milling to preserve fatty-acid content; Omega 3:6 ratio independently tested and printed on every batch; sourced from a single hemp cooperative with full crop traceability.",
+    "category": "Most households default to olive or sunflower oil for everyday cooking and treat specialty oils like flax or hemp as occasional purchases rather than pantry staples."
+  },
+  "audience": {
+    "primary_audience": "Home cooks and parents, 30-55, who plan meals for a household and read nutrition labels while grocery shopping.",
+    "demographics": "Suburban and small-city households, middle income, shop at mainstream grocery chains and natural food aisles, cook most meals at home.",
+    "psychographics": "Cares about nutrition but doesn't have time for a wellness routine; wants small, sustainable swaps rather than a full diet overhaul; trusts a label that explains itself over one that relies on branding.",
+    "pain_points": [
+      "Wants more Omega-3s in the family diet but finds fish-oil supplements a hassle to keep everyone taking",
+      "Assumes 'hemp' oil is expensive, complicated, or connected to cannabis",
+      "Doesn't know how a specialty oil fits into everyday cooking, not just salads"
+    ],
+    "desired_outcome": "Feeling like they've made one easy, lasting improvement to how the family eats, without overhauling the pantry or the budget.",
+    "channels": [
+      "Grocery store shelf and end-cap placement",
+      "recipe and parenting websites",
+      "Facebook and Pinterest",
+      "in-store sampling"
+    ],
+    "objections": "Price is higher than a bottle of standard vegetable oil; uncertainty about cooking temperature and smoke point; confusion with CBD or cannabis products.",
+    "secondary_audience": "Nutrition-focused school and workplace cafeterias looking for an easy plant-based oil swap in bulk."
+  },
+  "tone": {
+    "voice_words": ["Warm", "Straightforward", "Reassuring"],
+    "we_are": [
+      "Plain about what's in the bottle and where it fits in a normal week of cooking",
+      "Focused on small, doable changes, not lifestyle overhauls",
+      "Written like a trusted family grocery brand, not a supplement company"
+    ],
+    "we_are_not": [
+      "Making detox, cure, or miracle claims",
+      "Talking about cannabis, CBD, or 'highs' in any form",
+      "Positioning this as a luxury or once-in-a-while treat"
+    ],
+    "reference_brands": [
+      "Bob's Red Mill (plainspoken, kitchen-table trust)",
+      "Simple Mills (everyday, accessible health food)"
+    ],
+    "vocabulary": {
+      "use": [
+        "cold-pressed",
+        "everyday cooking",
+        "plant-based",
+        "Omega 3 & 6",
+        "pantry staple"
+      ],
+      "avoid": ["detox", "miracle", "biohack", "CBD", "superfood (unverified)"]
+    },
+    "example_line": "Same pantry, same recipes. Just swap the oil."
+  },
+  "offer": {
+    "core_offer": "Buy one 500mL bottle, get a recipe card set with 10 everyday ways to use it.",
+    "pricing_packaging": "$12.99 per 500mL bottle; a 2-pack at $22 for regular households; available in single bottles and multi-packs at partner grocers.",
+    "call_to_action": "Make the swap",
+    "urgency_reason": "The recipe card set is included only with the first production run.",
+    "guarantee": "Money back if it hasn't become part of your regular cooking rotation within 30 days.",
+    "post_conversion": "Welcome email sends the full recipe set, storage tips, and a simple explanation of Omega 3 versus Omega 6 and why both matter."
+  }
+}

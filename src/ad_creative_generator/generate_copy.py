@@ -51,10 +51,16 @@ def generate_copy(brief: dict, count: int = 20) -> list[CopyVariant]:
 
     response = client.messages.parse(
         model="claude-sonnet-5",
-        max_tokens=4000,
+        max_tokens=8000,
         messages=[{"role": "user", "content": build_prompt(brief, count)}],
         output_format=CopyVariants,
     )
+
+    if response.stop_reason == "max_tokens":
+        raise RuntimeError(
+            f"Response truncated at max_tokens before all {count} variants were "
+            f"written. Raise max_tokens and retry — do not use this partial batch."
+        )
 
     variants = response.parsed_output.variants
     if len(variants) != count:

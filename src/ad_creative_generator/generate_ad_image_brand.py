@@ -39,7 +39,6 @@ def generate_image(brief: dict, variant: dict, product_image_path: str) -> str:
         prompt=prompt,
         size="1024x1024",
         quality="high",
-        input_fidelity="high",
     )
 
     image_bytes = base64.b64decode(result.data[0].b64_json)

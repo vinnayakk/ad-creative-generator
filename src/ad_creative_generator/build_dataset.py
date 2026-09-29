@@ -12,7 +12,7 @@ BRIEF_PATHS = [
     DATA_DIR / "riverbend_tide_and_treetop_brandbrief.json",
 ]
 
-VARIANTS_PER_BRIEF = 2
+VARIANTS_PER_BRIEF = 30
 
 
 def build_dataset():

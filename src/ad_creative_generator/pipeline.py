@@ -14,10 +14,11 @@ load_dotenv()
 
 
 def run_pipeline(brief_path: str, count: int = 5):
+    brief_path = Path(brief_path)
     with open(brief_path) as f:
         brief = json.load(f)
 
-    product_image_path = brief["product"]["image_file"]
+    product_image_path = brief_path.parent / brief["product"]["image_file"]
 
     brand_name = brief["brand"]["name"]
     safe_name = brand_name.lower().replace(" ", "_")
@@ -50,7 +51,7 @@ def run_pipeline(brief_path: str, count: int = 5):
 
     manifest = {
         "brand": brand_name,
-        "brief_file": brief_path,
+        "brief_file": str(brief_path),
         "generated_at": datetime.now().isoformat(),
         "variant_count": len(rows),
         "variants": rows,

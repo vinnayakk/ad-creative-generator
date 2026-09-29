@@ -4,12 +4,12 @@ from pathlib import Path
 
 from ad_creative_generator.pipeline import run_pipeline
 
-PACKAGE_DIR = Path(__file__).parent
+DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 
 BRIEF_PATHS = [
-    PACKAGE_DIR / "velara_headphones_brandbrief.json",
-    PACKAGE_DIR / "verdan_hempseed_oil_brandbrief.json",
-    PACKAGE_DIR / "riverbend_tide_and_treetop_brandbrief.json",
+    DATA_DIR / "velara_headphones_brandbrief.json",
+    DATA_DIR / "verdan_hempseed_oil_brandbrief.json",
+    DATA_DIR / "riverbend_tide_and_treetop_brandbrief.json",
 ]
 
 VARIANTS_PER_BRIEF = 2

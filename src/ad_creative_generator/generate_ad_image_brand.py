@@ -30,7 +30,12 @@ def generate_image(brief: dict, variant: dict, product_image_path: str) -> str:
         f"headline: \"{variant['headline']}\". "
         f"Brand: {brand['name']}, personality: {', '.join(brand['personality'])}. "
         f"Voice/style cues: {', '.join(tone['voice_words'])}. "
-        f"Avoid: {', '.join(tone['we_are_not'])}."
+        f"Avoid: {', '.join(tone['we_are_not'])}. "
+        f"If you render any text onto the image, match the exact typeface, weight, and "
+        f"letterform style already visible on the product's own label or packaging in "
+        f"the reference image. Do not introduce a different or generic font — in "
+        f"particular, never default to a plain serif like Times New Roman when no such "
+        f"font appears on the actual packaging."
     )
 
     result = client.images.edit(

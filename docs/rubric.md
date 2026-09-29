@@ -111,6 +111,13 @@ product photo — `generate_ad_image_brand.py`'s prompt already asks for this �
 and the new background/setting/lighting matches `brand.personality` and does
 not read as one of the `tone.we_are_not` lines.
 
+`gpt-image-2` also tends to render the ad headline (and sometimes other brief
+text) directly onto the image as on-image typography, even though the prompt
+only asks it to use the headline as scene inspiration. This project treats
+that as a feature, not a bug — the output is meant to be a finished, postable
+ad, not just re-staged product photography — so on-image text is graded here
+too, under two additional checks.
+
 **Fails when:**
 
 - Label text, logo, or printed stats are altered, blurred past legibility, or
@@ -121,7 +128,20 @@ not read as one of the `tone.we_are_not` lines.
   ("Refined," "Calm," "uncluttered" voice), any cannabis-use imagery (smoking,
   bongs, rolling papers) for Verdan beyond the hemp-leaf motif that's already
   part of its own label art.
-- The model added on-image text that would itself fail criterion 1 or 2.
+- **On-image text content:** any text rendered onto the image would itself
+  fail criterion 1 (Tone) or criterion 2 (Claims) if graded as copy — it
+  drifts from the brief's voice, or states a claim the brief doesn't support.
+  Don't assume this is automatically covered by grading `headline`/`body`/
+  `cta` separately — the model sometimes renders more than just the headline
+  onto the image (brand personality words showed up unprompted in one pilot
+  variant), so the on-image text has to be read off the image itself, not
+  assumed to match the CSV row.
+- **Typography consistency:** on-image text uses a font that doesn't match
+  the typeface already visible on the product's own label/packaging in that
+  image, or doesn't match the font used in this brand's other variants. A
+  generic default (e.g. a plain serif like Times New Roman) appearing with no
+  basis in the brand's actual packaging is always a fail — it reads as an
+  unstyled placeholder, not a finished ad.
 
 ---
 

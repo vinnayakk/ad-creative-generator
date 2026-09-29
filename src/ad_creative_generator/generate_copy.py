@@ -41,7 +41,15 @@ Avoid words like: {', '.join(tone['vocabulary']['avoid'])}
 Offer: {offer['core_offer']}
 Call to action: {offer['call_to_action']}
 
-Each variant needs a short headline, a 1-2 sentence body, and a CTA line.
+Each variant needs:
+- headline: 12 words or fewer.
+- body: 1-2 sentences, under 40 words total.
+- cta: 6 words or fewer. Use "{offer['call_to_action']}" as-is, or something close
+  to it — a short directive telling the reader what to do next. Do NOT put offer
+  specifics (discount amounts, bonuses, guarantees) in the cta — those belong in
+  the body if you use them at all. The offer sells the deal; the cta tells the
+  reader what to click. They are not the same field.
+
 Vary the angle across variants (benefit-led, curiosity-led, proof-led, urgency-led, etc).
 Number them 1 through {count} in order."""
 

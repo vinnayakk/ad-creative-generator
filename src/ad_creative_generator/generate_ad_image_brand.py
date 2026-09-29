@@ -32,10 +32,11 @@ def generate_image(brief: dict, variant: dict, product_image_path: str) -> str:
         f"Voice/style cues: {', '.join(tone['voice_words'])}. "
         f"Avoid: {', '.join(tone['we_are_not'])}. "
         f"If you render any text onto the image, match the exact typeface, weight, and "
-        f"letterform style already visible on the product's own label or packaging in "
-        f"the reference image. Do not introduce a different or generic font — in "
-        f"particular, never default to a plain serif like Times New Roman when no such "
-        f"font appears on the actual packaging."
+        f"letterform style used for the brand's own name/logotype as printed on the "
+        f"product (for {brand['name']}, that's the \"{brand['name']}\" wordmark itself) — "
+        f"not other type on the label, which may use a different typeface for a tagline, "
+        f"category name, or fine print. Use that one typeface, and only that one, for any "
+        f"text you add, consistently across every image."
     )
 
     result = client.images.edit(

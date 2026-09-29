@@ -136,12 +136,14 @@ too, under two additional checks.
   onto the image (brand personality words showed up unprompted in one pilot
   variant), so the on-image text has to be read off the image itself, not
   assumed to match the CSV row.
-- **Typography consistency:** on-image text uses a font that doesn't match
-  the typeface already visible on the product's own label/packaging in that
-  image, or doesn't match the font used in this brand's other variants. A
-  generic default (e.g. a plain serif like Times New Roman) appearing with no
-  basis in the brand's actual packaging is always a fail — it reads as an
-  unstyled placeholder, not a finished ad.
+- **Typography consistency:** on-image text doesn't match the typeface used for the
+  brand's own name/logotype on the product (not just any typeface visible somewhere
+  on the label — some labels, like Riverbend's and Verdan's, print the product name
+  in a different typeface than the brand name or descriptors, and only the brand
+  logotype's font is the anchor), or doesn't match the font used in this brand's
+  other variants. A generic default (e.g. a plain serif like Times New Roman)
+  appearing with no basis in the brand's actual packaging is always a fail — it
+  reads as an unstyled placeholder, not a finished ad.
 
 ---
 

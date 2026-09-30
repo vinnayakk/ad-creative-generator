@@ -76,7 +76,7 @@ if submitted:
     brief_path = work_dir / "brief.json"
     brief_path.write_text(json.dumps(brief))
 
-    with st.spinner(f"Generating and judging {count} variant(s) — real, paid model calls..."):
+    with st.spinner(f"Generating and judging {count} variant(s)..."):
         try:
             response = requests.post(
                 f"{API_URL}/generate",

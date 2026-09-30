@@ -114,24 +114,34 @@ looking for two things a plain string match cannot catch:
 1. A synonym or rephrasing of a forbidden word or idea from the brand's "avoid" vocabulary \
 or "we are not" list, even when the literal word isn't present.
 2. A capability, number, or statistic that isn't supported by the brief at all — not a real \
-listed feature, and not a real proof point.
-Copy describing something on the approved features list is fine, even worded differently — \
-that is not an invented claim. Only flag a claim that goes beyond what's listed: a made-up \
-number, an exaggerated capability, or something the "we are not" list rules out. Pass unless \
-you find one of these. Be specific in your critique: name the exact phrase and what it \
-implies that the brief doesn't support."""
+listed feature, not a real top benefit or differentiator, not a real proof point, and not \
+part of the brief's actual offer.
+Copy describing something on the approved features list, the brief's stated top benefits or \
+differentiation, or the brief's real offer (a bonus item, price, pack size, guarantee, or \
+stated urgency reason), is fine, even worded differently — that is not an invented claim. \
+Only flag a claim that goes beyond everything listed: a made-up number, an exaggerated \
+capability, or something the "we are not" list rules out. Pass unless you find one of these. \
+Be specific in your critique: name the exact phrase and what it implies that the brief \
+doesn't support."""
 
 
 def grade_claims_llm(client: Anthropic, brief: dict, headline: str, body: str, cta: str) -> CriterionResult:
-    tone, product = brief["tone"], brief["product"]
-    prompt = f"""Brand: {brief['brand']['name']}
+    brand, tone, product, offer = brief["brand"], brief["tone"], brief["product"], brief["offer"]
+    prompt = f"""Brand: {brand['name']}
 
 We are not: {', '.join(tone['we_are_not'])}
 Avoid vocabulary: {', '.join(tone['vocabulary']['avoid'])}
 Approved product features (these ARE real, supported capabilities — do not flag copy for \
 describing these, even in different words): {'; '.join(product['key_features'])}
+Top benefits and differentiation (these ARE real, supported claims about what sets the \
+product apart — do not flag copy for describing these, even in different words): \
+{'; '.join(product['top_benefits'])}; {brand['differentiation']}
 Proof points (the only NUMBERS/statistics this copy may rely on — a feature above being \
 real doesn't license inventing a figure for it): {product['proof_points']}
+The brief's actual offer (these ARE real and may be mentioned in any wording — do not flag \
+copy for describing a bonus item, price, pack size, guarantee, or urgency reason listed \
+here): core offer: {offer['core_offer']}; pricing/packaging: {offer['pricing_packaging']}; \
+guarantee: {offer['guarantee']}; urgency reason: {offer['urgency_reason']}
 
 Ad copy to grade:
 Headline: {headline}
@@ -164,9 +174,10 @@ generic ad-speak that could belong to any brand in the category.
 
 
 def grade_tone_llm(client: Anthropic, brief: dict, headline: str, body: str) -> CriterionResult:
-    tone = brief["tone"]
-    prompt = f"""Brand: {brief['brand']['name']}
-Positioning: {brief['brand']['positioning_statement']}
+    brand, tone = brief["brand"], brief["tone"]
+    prompt = f"""Brand: {brand['name']}
+Positioning: {brand['positioning_statement']}
+Personality: {', '.join(brand['personality'])}
 
 Voice words: {', '.join(tone['voice_words'])}
 We are: {', '.join(tone['we_are'])}
@@ -185,10 +196,10 @@ Body: {body}"""
 # ---------- Criterion 3: Call to action — does it contradict the offer? ----------
 
 CTA_JUDGE_SYSTEM = """You are grading whether an ad's CTA line is consistent with the \
-brand's actual offer. Pass unless the CTA invents an offer detail (a discount, bonus, or \
-guarantee) the brief doesn't state, or is so hedgy/apologetic it undercuts the ask. The CTA \
-doesn't need to be the literal offer string — a close paraphrase that doesn't overpromise \
-is fine."""
+brand's actual offer. Pass unless the CTA invents an offer detail (a discount, bonus, \
+guarantee, or urgency/scarcity reason) the brief doesn't state, or is so hedgy/apologetic \
+it undercuts the ask. The CTA doesn't need to be the literal offer string — a close \
+paraphrase that doesn't overpromise is fine."""
 
 
 def grade_cta_llm(client: Anthropic, brief: dict, cta: str) -> CriterionResult:
@@ -203,6 +214,7 @@ Call to action: {offer['call_to_action']}
 Core offer: {offer['core_offer']}
 Pricing/packaging: {offer['pricing_packaging']}
 Guarantee: {offer['guarantee']}
+Urgency reason: {offer['urgency_reason']}
 
 CTA to grade: "{cta}\""""
 
@@ -240,13 +252,23 @@ def encode_image(path: Path) -> str:
 def grade_visual_fit_llm(
     client: Anthropic, brief: dict, base_image_path: Path, generated_image_path: Path
 ) -> CriterionResult:
-    brand, tone = brief["brand"], brief["tone"]
+    brand, tone, product, offer = brief["brand"], brief["tone"], brief["product"], brief["offer"]
     prompt_text = f"""Brand: {brand['name']}
 Personality: {', '.join(brand['personality'])}
+Differentiation: {brand['differentiation']}
 Voice words: {', '.join(tone['voice_words'])}
+We are: {', '.join(tone['we_are'])}
 We are not: {', '.join(tone['we_are_not'])}
+Use vocabulary like: {', '.join(tone['vocabulary']['use'])}
+Example of the right register: "{tone['example_line']}"
 Reference brands (the visual/verbal restraint level to hold this ad to): {', '.join(tone['reference_brands'])}
-The brand's own name/logotype text (the typography anchor): "{brand['name']}\""""
+The brand's own name/logotype text (the typography anchor): "{brand['name']}"
+For check 4 (on-image text claims), these ARE real and may appear on-image without being an \
+invented claim: approved product features: {'; '.join(product['key_features'])}; top \
+benefits: {'; '.join(product['top_benefits'])}; proof points: {product['proof_points']}; \
+the brief's actual offer (a bonus item, price, pack size, guarantee, or urgency reason): \
+core offer: {offer['core_offer']}; pricing/packaging: {offer['pricing_packaging']}; \
+guarantee: {offer['guarantee']}; urgency reason: {offer['urgency_reason']}"""
 
     content = [
         {"type": "text", "text": "Original product photo:"},

@@ -113,10 +113,13 @@ CLAIMS_JUDGE_SYSTEM = """You are grading ad copy against a brand's claims rules.
 looking for two things a plain string match cannot catch:
 1. A synonym or rephrasing of a forbidden word or idea from the brand's "avoid" vocabulary \
 or "we are not" list, even when the literal word isn't present.
-2. A number, statistic, or capability claim that is invented or inflated beyond what the \
-brief's proof points actually support.
-Pass unless you find one of these. Be specific in your critique: name the exact phrase and \
-what it implies that the brief doesn't support."""
+2. A capability, number, or statistic that isn't supported by the brief at all — not a real \
+listed feature, and not a real proof point.
+Copy describing something on the approved features list is fine, even worded differently — \
+that is not an invented claim. Only flag a claim that goes beyond what's listed: a made-up \
+number, an exaggerated capability, or something the "we are not" list rules out. Pass unless \
+you find one of these. Be specific in your critique: name the exact phrase and what it \
+implies that the brief doesn't support."""
 
 
 def grade_claims_llm(client: Anthropic, brief: dict, headline: str, body: str, cta: str) -> CriterionResult:
@@ -125,7 +128,10 @@ def grade_claims_llm(client: Anthropic, brief: dict, headline: str, body: str, c
 
 We are not: {', '.join(tone['we_are_not'])}
 Avoid vocabulary: {', '.join(tone['vocabulary']['avoid'])}
-Proof points (the only numbers/claims this copy may rely on): {product['proof_points']}
+Approved product features (these ARE real, supported capabilities — do not flag copy for \
+describing these, even in different words): {'; '.join(product['key_features'])}
+Proof points (the only NUMBERS/statistics this copy may rely on — a feature above being \
+real doesn't license inventing a figure for it): {product['proof_points']}
 
 Ad copy to grade:
 Headline: {headline}
@@ -212,12 +218,19 @@ generated ad. Check, in order:
 (volumes, ABV, etc.) unchanged and legible in the generated image, compared to the original?
 2. Scene fit: does the new background/setting/lighting match the brand's personality and \
 avoid anything on its "we are not" list?
-3. On-image text (if any is rendered onto the ad): does it read in the brand's voice and \
+3. Visual restraint: does the amount and prominence of on-image typography match the \
+restraint the brand's reference brands and personality call for? A brand whose reference \
+brands lean toward a minimal, product-forward aesthetic (think Apple, Bang & Olufsen) should \
+be held to a high bar here — a large block of promotional copy or a price-off callout laid \
+over the product is a fail even if the words themselves are on-tone, because the brief is \
+asking for restraint in how much type appears, not just what it says. A brand whose reference \
+brands don't carry that same minimalism can carry more on-image text without failing this check.
+4. On-image text (if any is rendered onto the ad): does it read in the brand's voice and \
 avoid claims the brief doesn't support — the same bar written copy is held to?
-4. Typography: if there is on-image text, does its typeface plausibly match the font used \
+5. Typography: if there is on-image text, does its typeface plausibly match the font used \
 for the brand's own name/logotype as printed on the product — not a generic, unrelated font \
 with no basis in the actual packaging?
-Fail if any of the four checks fails, and say which one in your critique."""
+Fail if any of the five checks fails, and say which one in your critique."""
 
 
 def encode_image(path: Path) -> str:
@@ -232,6 +245,7 @@ def grade_visual_fit_llm(
 Personality: {', '.join(brand['personality'])}
 Voice words: {', '.join(tone['voice_words'])}
 We are not: {', '.join(tone['we_are_not'])}
+Reference brands (the visual/verbal restraint level to hold this ad to): {', '.join(tone['reference_brands'])}
 The brand's own name/logotype text (the typography anchor): "{brand['name']}\""""
 
     content = [

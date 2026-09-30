@@ -116,7 +116,7 @@ text) directly onto the image as on-image typography, even though the prompt
 only asks it to use the headline as scene inspiration. This project treats
 that as a feature, not a bug — the output is meant to be a finished, postable
 ad, not just re-staged product photography — so on-image text is graded here
-too, under two additional checks.
+too, under three additional checks.
 
 **Fails when:**
 
@@ -128,6 +128,18 @@ too, under two additional checks.
   ("Refined," "Calm," "uncluttered" voice), any cannabis-use imagery (smoking,
   bongs, rolling papers) for Verdan beyond the hemp-leaf motif that's already
   part of its own label art.
+- **Visual restraint:** the amount and prominence of on-image typography
+  doesn't match the restraint the brief's `tone.reference_brands` and
+  `brand.personality` call for. Velara's references are Apple and Bang &
+  Olufsen ("restrained, product-led copy," "design-forward, unhurried") and
+  its personality includes "Refined" and "Uncluttered" — a large block of
+  promotional copy or a price-off callout laid over the product fails this
+  check even if every word in it would pass Tone and Claims on its own,
+  because the brief is asking for product-forward images with minimal type,
+  not just on-brand type. A brand whose reference brands don't carry that
+  same restraint (Verdan's Bob's Red Mill and Simple Mills are "plainspoken"
+  and "everyday," not minimal) can carry more on-image text without failing
+  this check.
 - **On-image text content:** any text rendered onto the image would itself
   fail criterion 1 (Tone) or criterion 2 (Claims) if graded as copy — it
   drifts from the brief's voice, or states a claim the brief doesn't support.

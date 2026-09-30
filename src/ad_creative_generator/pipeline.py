@@ -5,12 +5,16 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from anthropic import Anthropic
 from dotenv import load_dotenv
 
 from ad_creative_generator.generate_copy import generate_copy
 from ad_creative_generator.generate_ad_image_brand import generate_image
+from ad_creative_generator.judge import judge_variant
 
 load_dotenv()
+
+SCORE_COLUMNS = ("tone_pass", "claims_pass", "cta_pass", "length_pass", "visual_fit_pass")
 
 
 def run_pipeline(brief_path: str, count: int = 5):
@@ -29,6 +33,7 @@ def run_pipeline(brief_path: str, count: int = 5):
 
     variants = generate_copy(brief, count=count)
 
+    client = Anthropic()
     rows = []
     for variant in variants:
         print(f"Generating image for variant {variant.variant_number}...")
@@ -39,13 +44,28 @@ def run_pipeline(brief_path: str, count: int = 5):
 
         row = variant.model_dump()
         row["image_file"] = destination.name
+        # judge_variant reads the image from disk itself, so it needs the full
+        # path — image_file above is just the filename for the CSV/manifest.
+        row["image_path"] = str(destination)
+
+        print(f"Judging variant {variant.variant_number}...")
+        row = judge_variant(client, brief, row)
+        row["judge_score"] = sum(row[col] for col in SCORE_COLUMNS)
+        del row["image_path"]  # was only needed to locate the file for judging
+
         rows.append(row)
 
+    # Best variant first, so callers see the strongest option without having
+    # to sort client-side.
+    rows.sort(key=lambda r: r["judge_score"], reverse=True)
+
     csv_path = output_dir / "results.csv"
+    fieldnames = [
+        "variant_number", "headline", "body", "cta", "image_file",
+        "judge_score", *SCORE_COLUMNS, "critique",
+    ]
     with open(csv_path, "w", newline="") as f:
-        writer = csv.DictWriter(
-            f, fieldnames=["variant_number", "headline", "body", "cta", "image_file"]
-        )
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
 
@@ -54,7 +74,7 @@ def run_pipeline(brief_path: str, count: int = 5):
         "brief_file": str(brief_path),
         "generated_at": datetime.now().isoformat(),
         "variant_count": len(rows),
-        "variants": rows,
+        "variants": rows,  # sorted best judge_score first
     }
     with open(output_dir / "manifest.json", "w") as f:
         json.dump(manifest, f, indent=2)

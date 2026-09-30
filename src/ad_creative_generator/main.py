@@ -22,6 +22,8 @@ class GenerateRequest(BaseModel):
 class GenerateResponse(BaseModel):
     output_dir: str
     variant_count: int
+    best_judge_score: int
+    best_variant_headline: str
 
 
 @app.post("/generate")
@@ -31,7 +33,12 @@ def generate(request: GenerateRequest):
     with open(Path(output_dir) / "manifest.json") as f:
         manifest = json.load(f)
 
+    # run_pipeline sorts variants best judge_score first.
+    best = manifest["variants"][0]
+
     return GenerateResponse(
         output_dir=str(output_dir),
         variant_count=manifest["variant_count"],
+        best_judge_score=best["judge_score"],
+        best_variant_headline=best["headline"],
     )

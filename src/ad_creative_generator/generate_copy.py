@@ -54,9 +54,7 @@ Vary the angle across variants (benefit-led, curiosity-led, proof-led, urgency-l
 Number them 1 through {count} in order."""
 
 
-def generate_copy(brief: dict, count: int = 20) -> list[CopyVariant]:
-    client = Anthropic()
-
+def generate_copy(client: Anthropic, brief: dict, count: int = 20) -> list[CopyVariant]:
     response = client.messages.parse(
         model="claude-sonnet-5",
         max_tokens=8000,
@@ -86,7 +84,8 @@ def main():
     with open(brief_path) as f:
         brief = json.load(f)
 
-    variants = generate_copy(brief, count=20)
+    client = Anthropic()  # reads ANTHROPIC_API_KEY from the environment (.env)
+    variants = generate_copy(client, brief, count=20)
 
     output_path = Path(brief_path).stem + "_copy_variants.csv"
     with open(output_path, "w", newline="") as f:

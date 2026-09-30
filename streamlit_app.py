@@ -1,138 +1,132 @@
 """
-Local prototype UI for the ad creative generator.
-
-This is a prototype, not a public tool: it only ever talks to a FastAPI
-server running on YOUR OWN machine, using YOUR OWN .env key.
-
-Run the backend first, in one terminal:
-    uvicorn ad_creative_generator.main:app --reload
-
-Then, in another terminal:
-    streamlit run streamlit_app.py
+Local dev:  streamlit run streamlit_app.py
+Deployed (Hugging Face Spaces): same command — this app runs the pipeline
+in-process, no separate API server. Visitors paste their own Anthropic +
+OpenAI keys; nothing here reads a key from the environment or writes a key
+to disk.
 """
 import json
+import sys
 import tempfile
 from pathlib import Path
 
-import requests
 import streamlit as st
 
-API_URL = "http://localhost:8000"
+# Makes `ad_creative_generator` importable whether this file runs from the
+# repo root locally or from a Space deploy — both keep `src/` next to this
+# file. See the deploy guide for the Space's file layout.
+sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
-st.set_page_config(page_title="Ad Creative Generator", layout="wide")
-st.title("Ad Creative Generator — prototype")
+from ad_creative_generator.pipeline import run_pipeline  # noqa: E402
+
+st.set_page_config(page_title="Ad Creative Generator", page_icon="🎨")
+
+st.title("Ad Creative Generator")
 st.caption(
-    f"Talks only to your own local API at {API_URL}. Nothing here is public."
+    "Generates on-brand ad copy + images from a product photo and a brand "
+    "brief, then grades every variant against five brand-fit criteria."
 )
 
+with st.expander("About the API keys", expanded=False):
+    st.markdown(
+        "This demo doesn't use a shared key — **you bring your own**. Your "
+        "keys are used only in memory for this one run, to call Anthropic "
+        "and OpenAI directly on your behalf. They are never stored, logged, "
+        "or written to disk, and this app has no database.\n\n"
+        "As with pasting any API key into any web app, only use a key "
+        "you're comfortable temporarily exposing to a server you don't "
+        "control — if that doesn't sit right with you, clone the repo and "
+        "run this locally instead, with the key in your own `.env`.\n\n"
+        "- Get an Anthropic key at [console.anthropic.com](https://console.anthropic.com)\n"
+        "- Get an OpenAI key at [platform.openai.com](https://platform.openai.com)"
+    )
+
 with st.form("generate_form"):
+    anthropic_key = st.text_input(
+        "Your Anthropic API key", type="password", placeholder="sk-ant-..."
+    )
+    openai_key = st.text_input(
+        "Your OpenAI API key", type="password", placeholder="sk-..."
+    )
+
     photo = st.file_uploader("Product photo", type=["png", "jpg", "jpeg"])
     brief_text = st.text_area(
-        "Brand brief (paste the full JSON)",
-        height=300,
-        placeholder='{"brand": {...}, "product": {...}, "tone": {...}, "offer": {...}}',
+        "Brand brief (paste JSON)", height=240, placeholder='{"brand": {...}, ...}'
     )
-    count = st.slider(
-        "Variants to generate",
-        min_value=1,
-        max_value=10,
-        value=3,
-        help=(
-            "Each variant is one copy call, one image call, and five judge "
-            "calls -- all real, paid model calls. Start low."
-        ),
+    count = st.slider("Number of variants", min_value=1, max_value=10, value=3)
+    st.caption(
+        "Each variant makes several Anthropic calls plus one OpenAI image "
+        "call — cost scales with this number, on your own key."
     )
+
     submitted = st.form_submit_button("Generate")
 
 if submitted:
+    errors = []
+    if not anthropic_key.strip():
+        errors.append("Anthropic API key is required.")
+    if not openai_key.strip():
+        errors.append("OpenAI API key is required.")
     if not photo:
-        st.error("Upload a product photo first.")
-        st.stop()
+        errors.append("Please upload a product photo.")
+
+    brief = None
     if not brief_text.strip():
-        st.error("Paste a brand brief first.")
-        st.stop()
-
-    try:
-        brief = json.loads(brief_text)
-    except json.JSONDecodeError as e:
-        st.error(f"That brief isn't valid JSON: {e}")
-        st.stop()
-
-    try:
-        image_filename = brief["product"]["image_file"]
-    except KeyError:
-        st.error(
-            'The brief is missing brief["product"]["image_file"] -- the '
-            "pipeline needs this to know what to name the uploaded photo."
-        )
-        st.stop()
-
-    # The pipeline expects the brief JSON and its product photo to sit in
-    # the same folder, with the photo named exactly what the brief says
-    # (product.image_file). Recreate that layout in a fresh temp dir per
-    # request so nothing collides across runs.
-    work_dir = Path(tempfile.mkdtemp(prefix="ad_creative_ui_"))
-    (work_dir / image_filename).write_bytes(photo.getvalue())
-    brief_path = work_dir / "brief.json"
-    brief_path.write_text(json.dumps(brief))
-
-    with st.spinner(f"Generating and judging {count} variant(s)..."):
+        errors.append("Please paste a brand brief.")
+    else:
         try:
-            response = requests.post(
-                f"{API_URL}/generate",
-                json={"brief_path": str(brief_path), "count": count},
-                timeout=600,
-            )
-            response.raise_for_status()
-        except requests.exceptions.ConnectionError:
-            st.error(
-                f"Couldn't reach {API_URL}. Is the backend running? Start it with:\n\n"
-                "`uvicorn ad_creative_generator.main:app --reload`"
-            )
-            st.stop()
-        except requests.exceptions.HTTPError as e:
-            st.error(f"The API returned an error: {e}\n\n{response.text}")
-            st.stop()
+            brief = json.loads(brief_text)
+        except json.JSONDecodeError as e:
+            errors.append(f"Brief isn't valid JSON: {e}")
 
-    result = response.json()
-    st.success(
-        f"Done — {result['variant_count']} variants generated. "
-        f'Best: "{result["best_variant_headline"]}" '
-        f'(judge score {result["best_judge_score"]}/5).'
-    )
+    if errors:
+        for e in errors:
+            st.error(e)
+    else:
+        with tempfile.TemporaryDirectory(prefix="ad_creative_ui_") as tmp_dir:
+            tmp_dir = Path(tmp_dir)
 
-    # /generate only returns the winner; the full sorted list lives in
-    # manifest.json on disk. This UI and the API run on the same machine in
-    # this prototype, so we can just read it back.
-    manifest_path = Path(result["output_dir"]) / "manifest.json"
-    if not manifest_path.exists():
-        st.warning(
-            f"Results were saved to {result['output_dir']}, but I couldn't "
-            "find manifest.json there to show a preview."
-        )
-        st.stop()
+            image_filename = photo.name
+            (tmp_dir / image_filename).write_bytes(photo.getvalue())
 
-    with open(manifest_path) as f:
-        manifest = json.load(f)
+            brief["product"]["image_file"] = image_filename
+            brief_path = tmp_dir / "brief.json"
+            brief_path.write_text(json.dumps(brief))
 
-    st.subheader("All variants, best judge score first")
-    criteria = ["tone_pass", "claims_pass", "cta_pass", "length_pass", "visual_fit_pass"]
+            with st.spinner(f"Generating {count} variant(s) — this can take a few minutes..."):
+                try:
+                    output_dir = run_pipeline(
+                        str(brief_path),
+                        count=count,
+                        anthropic_api_key=anthropic_key.strip(),
+                        openai_api_key=openai_key.strip(),
+                    )
+                except Exception as e:
+                    st.error(f"Generation failed: {e}")
+                    st.stop()
 
-    for variant in manifest["variants"]:
-        score = variant.get("judge_score", "?")
-        with st.expander(f"{variant['headline']} — score {score}/5", expanded=(score == 5)):
-            image_col, text_col = st.columns([1, 2])
+            with open(Path(output_dir) / "manifest.json") as f:
+                manifest = json.load(f)
 
-            image_path = Path(result["output_dir"]) / variant["image_file"]
-            if image_path.exists():
-                image_col.image(str(image_path))
+        st.success(f"Generated {manifest['variant_count']} variant(s), best first.")
 
-            with text_col:
+        criteria = ["tone", "claims", "cta", "length", "visual_fit"]
+        for i, variant in enumerate(manifest["variants"]):
+            with st.expander(
+                f"Variant {variant['variant_number']} — "
+                f"score {variant['judge_score']}/5 — {variant['headline']}",
+                expanded=(i == 0),
+            ):
+                image_path = Path(output_dir) / variant["image_file"]
+                if image_path.exists():
+                    st.image(str(image_path))
                 st.write(f"**Body:** {variant['body']}")
                 st.write(f"**CTA:** {variant['cta']}")
-                for key in criteria:
-                    icon = "✅" if variant.get(key) else "❌"
-                    label = key.replace("_pass", "").replace("_", " ").title()
-                    st.write(f"{icon} {label}")
-                if variant.get("critique"):
+
+                cols = st.columns(len(criteria))
+                for col, criterion in zip(cols, criteria):
+                    passed = variant[f"{criterion}_pass"]
+                    col.write(f"{'✅' if passed else '❌'} {criterion.replace('_', ' ').title()}")
+
+                if variant["critique"]:
                     st.caption(variant["critique"])

@@ -1,26 +1,27 @@
 import base64
-import json
+from pathlib import Path
 
-from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv()
 
-
-def generate_image(brief: dict, variant: dict, product_image_path: str) -> str:
+def generate_image(
+    client: OpenAI, brief: dict, variant: dict, product_image_path: str, output_dir: Path
+) -> str:
     """
     Generate one ad image from a brand brief and one copy variant.
 
     Args:
+        client: an OpenAI client, already constructed with an API key
         brief: a loaded brand-brief dict
         variant: a dict with at least 'headline' and 'variant_number' keys
         product_image_path: path to this brand's base product photo
+        output_dir: directory to save the generated PNG into — must already
+            exist and be unique per run (the caller's job), so two concurrent
+            runs never write to the same path
 
     Returns:
         The file path of the saved PNG.
     """
-    client = OpenAI()
-
     brand = brief["brand"]
     tone = brief["tone"]
 
@@ -50,9 +51,9 @@ def generate_image(brief: dict, variant: dict, product_image_path: str) -> str:
     image_bytes = base64.b64decode(result.data[0].b64_json)
 
     safe_brand = brand["name"].lower().replace(" ", "_")
-    output_path = f"{safe_brand}_variant_{variant['variant_number']}.png"
+    output_path = Path(output_dir) / f"{safe_brand}_variant_{variant['variant_number']}.png"
 
     with open(output_path, "wb") as f:
         f.write(image_bytes)
 
-    return output_path
+    return str(output_path)

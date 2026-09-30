@@ -289,7 +289,7 @@ guarantee: {offer['guarantee']}; urgency reason: {offer['urgency_reason']}"""
 
 # ---------- Orchestration ----------
 
-def judge_variant(client: Anthropic, brief: dict, row: dict) -> dict:
+def judge_variant(client: Anthropic, brief: dict, row: dict, base_image_path: Path) -> dict:
     headline, body, cta = row["headline"], row["body"], row["cta"]
 
     length_result = grade_length(headline, body, cta)
@@ -305,7 +305,6 @@ def judge_variant(client: Anthropic, brief: dict, row: dict) -> dict:
     tone_result = grade_tone_llm(client, brief, headline, body)
     cta_result = grade_cta_llm(client, brief, cta)
 
-    base_image_path = DATA_DIR / brief["product"]["image_file"]
     generated_image_path = Path(row["image_path"])
     visual_result = grade_visual_fit_llm(client, brief, base_image_path, generated_image_path)
 
@@ -348,7 +347,9 @@ def run_judge(
 
         for i, row in enumerate(rows, start=1):
             print(f"Judging {i}/{len(rows)}: {row['brand']} variant {row['variant_number']}...")
-            judged_row = judge_variant(client, briefs[row["brand"]], row)
+            brief = briefs[row["brand"]]
+            base_image_path = DATA_DIR / brief["product"]["image_file"]
+            judged_row = judge_variant(client, brief, row, base_image_path)
             writer.writerow(judged_row)
             out_f.flush()  # write incrementally — see note below
 

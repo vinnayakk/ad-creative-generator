@@ -1,12 +1,13 @@
 import csv
 import json
-import shutil
 import sys
+import uuid
 from datetime import datetime
 from pathlib import Path
 
 from anthropic import Anthropic
 from dotenv import load_dotenv
+from openai import OpenAI
 
 from ad_creative_generator.generate_copy import generate_copy
 from ad_creative_generator.generate_ad_image_brand import generate_image
@@ -17,7 +18,20 @@ load_dotenv()
 SCORE_COLUMNS = ("tone_pass", "claims_pass", "cta_pass", "length_pass", "visual_fit_pass")
 
 
-def run_pipeline(brief_path: str, count: int = 5):
+def run_pipeline(
+    brief_path: str,
+    count: int = 5,
+    anthropic_api_key: str | None = None,
+    openai_api_key: str | None = None,
+):
+    """
+    Run the full generate -> image -> judge pipeline for one brief.
+
+    anthropic_api_key / openai_api_key: pass these to use a caller-supplied key
+    (e.g. one a visitor pasted into a public demo). Leave them as None for local
+    use — the Anthropic/OpenAI SDKs then fall back to the ANTHROPIC_API_KEY /
+    OPENAI_API_KEY environment variables (from .env), exactly as before.
+    """
     brief_path = Path(brief_path)
     with open(brief_path) as f:
         brief = json.load(f)
@@ -27,29 +41,34 @@ def run_pipeline(brief_path: str, count: int = 5):
     brand_name = brief["brand"]["name"]
     safe_name = brand_name.lower().replace(" ", "_")
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # The timestamp alone isn't unique enough: two visitors hitting a public
+    # demo for the same brand within the same second would otherwise get the
+    # same output_dir and silently clobber each other's files.
+    run_id = uuid.uuid4().hex[:8]
 
-    output_dir = Path("outputs") / f"{safe_name}_{timestamp}"
+    output_dir = Path("outputs") / f"{safe_name}_{timestamp}_{run_id}"
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    variants = generate_copy(brief, count=count)
+    anthropic_client = Anthropic(api_key=anthropic_api_key) if anthropic_api_key else Anthropic()
+    openai_client = OpenAI(api_key=openai_api_key) if openai_api_key else OpenAI()
 
-    client = Anthropic()
+    variants = generate_copy(anthropic_client, brief, count=count)
+
     rows = []
     for variant in variants:
         print(f"Generating image for variant {variant.variant_number}...")
-        image_path = generate_image(brief, variant.model_dump(), product_image_path)
-
-        destination = output_dir / Path(image_path).name
-        shutil.move(image_path, destination)
+        image_path = generate_image(
+            openai_client, brief, variant.model_dump(), product_image_path, output_dir
+        )
 
         row = variant.model_dump()
-        row["image_file"] = destination.name
+        row["image_file"] = Path(image_path).name
         # judge_variant reads the image from disk itself, so it needs the full
         # path — image_file above is just the filename for the CSV/manifest.
-        row["image_path"] = str(destination)
+        row["image_path"] = str(image_path)
 
         print(f"Judging variant {variant.variant_number}...")
-        row = judge_variant(client, brief, row)
+        row = judge_variant(anthropic_client, brief, row, product_image_path)
         row["judge_score"] = sum(row[col] for col in SCORE_COLUMNS)
         del row["image_path"]  # was only needed to locate the file for judging
 

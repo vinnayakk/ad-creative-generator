@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock
+from unittest.mock import MagicMock, patch
 
 from ad_creative_generator.judge import (
     CriterionResult,
@@ -6,6 +6,7 @@ from ad_creative_generator.judge import (
     grade_cta_llm,
     grade_tone_llm,
     grade_visual_fit_llm,
+    judge_variant,
 )
 
 
@@ -150,3 +151,34 @@ def test_visual_fit_prompt_includes_voice_and_benefit_fields(tmp_path):
     # top benefits / differentiation, same blind spot as Claims had
     assert "travels easily to the trail, the beach, or the dock" in prompt_text
     assert "Brewed and packaged specifically for outdoor use" in prompt_text
+
+
+# ---------- judge_variant: must judge against the actual base image it's given ----------
+
+def test_judge_variant_uses_the_caller_supplied_base_image_not_data_dir(tmp_path):
+    """Regression test: judge_variant used to hardcode DATA_DIR / image_file for
+    the base product photo, ignoring whatever image the caller actually used.
+    That's correct for the offline batch script (run_judge, which always reads
+    from data/) but silently wrong — or a crash — for the Streamlit app, where
+    a visitor's own uploaded photo lives in a temp dir, not data/."""
+    client = MagicMock()
+    client.messages.parse.side_effect = lambda **kwargs: MagicMock(
+        parsed_output=CriterionResult(passed=True, critique="")
+    )
+
+    brief = _riverbend_style_brief()
+    # Deliberately NOT named after anything in data/, to prove this isn't
+    # passing by filename coincidence.
+    base_image = tmp_path / "some_strangers_uploaded_photo.png"
+    generated_image = tmp_path / "generated.png"
+    base_image.write_bytes(b"fake")
+    generated_image.write_bytes(b"fake")
+
+    row = {"headline": "H", "body": "B", "cta": "C", "image_path": str(generated_image)}
+
+    with patch("ad_creative_generator.judge.encode_image") as mock_encode:
+        mock_encode.return_value = "encoded"
+        judge_variant(client, brief, row, base_image)
+
+    encoded_paths = [call.args[0] for call in mock_encode.call_args_list]
+    assert encoded_paths == [base_image, generated_image]

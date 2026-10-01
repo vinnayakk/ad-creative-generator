@@ -6,7 +6,7 @@ own rules by an LLM judge before a human ever sees it.
 
 ![Demo](demo.gif)
 
-**Try it:** [ad-creative-generator-withjudge.streamlit.app](https://ad-creative-generator-withjudge.streamlit.app/) (bring your own Anthropic + OpenAI API keys)
+**TRY IT:** [ad-creative-generator-withjudge.streamlit.app](https://ad-creative-generator-withjudge.streamlit.app/) (bring your own Anthropic + OpenAI API keys).
 
 ## The problem
 

@@ -148,7 +148,6 @@ def test_visual_fit_prompt_includes_voice_and_benefit_fields(tmp_path):
     assert "real outdoor moments" in prompt_text
     assert "bright hops" in prompt_text
     assert "Bright hops, clean finish, built to fit in a pack." in prompt_text
-    # top benefits / differentiation, same blind spot as Claims had
     assert "travels easily to the trail, the beach, or the dock" in prompt_text
     assert "Brewed and packaged specifically for outdoor use" in prompt_text
 

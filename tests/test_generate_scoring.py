@@ -2,10 +2,7 @@
 
 No real API calls: Anthropic, OpenAI, generate_copy, generate_image, and
 judge_variant are all patched. This tests plumbing (does the best-scoring
-variant surface correctly, sorted first) at $0, same as before — the
-patched Anthropic/OpenAI clients here also stand in for the BYOK path,
-since run_pipeline() always constructs a client either way, whether from a
-caller-supplied key or from the environment.
+variant surface correctly, sorted first) at $0.
 """
 from pathlib import Path
 from unittest.mock import MagicMock, patch
@@ -114,7 +111,7 @@ def test_generate_best_variant_headline_matches_top_score(
 
     body = response.json()
     # Variant 2 is the only one that passes all 5 (visual_fit_pass on even
-    # variant numbers), so it must be the reported best.
+    # variant numbers)
     assert body["best_variant_headline"] == "Headline 2"
 
 

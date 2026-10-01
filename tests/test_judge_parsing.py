@@ -42,11 +42,7 @@ def test_judge_call_returns_parsed_output_on_success():
 
 
 def test_judge_call_wraps_validation_error_with_a_clear_message():
-    # A real ValidationError, not a hand-built one -- CriterionResult.critique
-    # has no default, so constructing one without it raises exactly the kind
-    # of error client.messages.parse() raises internally on truncated JSON.
-    # (Python drops the exception variable itself once an except block ends,
-    # so capture it via pytest.raises rather than an except-as binding.)
+    
     with pytest.raises(ValidationError) as exc_info:
         CriterionResult(passed=True)
     real_error = exc_info.value
@@ -119,10 +115,6 @@ def test_grade_claims_code_clean_when_no_avoid_terms_present():
 
 def test_grade_cta_llm_short_circuits_on_empty_cta_without_calling_the_model():
     mock_client = MagicMock()
-
-    # brief is deliberately empty -- if this reached the model-call path it
-    # would KeyError on brief["offer"] before the mock even mattered, which
-    # is exactly the point: an empty CTA should never get that far.
     result = grade_cta_llm(mock_client, brief={}, cta="   ")
 
     assert result.passed is False

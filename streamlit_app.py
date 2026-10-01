@@ -1,9 +1,8 @@
 """
 Local dev:  streamlit run streamlit_app.py
-Deployed (Hugging Face Spaces): same command — this app runs the pipeline
-in-process, no separate API server. Visitors paste their own Anthropic +
-OpenAI keys; nothing here reads a key from the environment or writes a key
-to disk.
+This app runs the pipeline in-process, no separate API server. 
+Visitors paste their own Anthropic + OpenAI keys; nothing here 
+reads a key from the environment or writes a key to disk.
 """
 import json
 import sys
@@ -11,10 +10,6 @@ import tempfile
 from pathlib import Path
 
 import streamlit as st
-
-# Makes `ad_creative_generator` importable whether this file runs from the
-# repo root locally or from a Space deploy — both keep `src/` next to this
-# file. See the deploy guide for the Space's file layout.
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
 from ad_creative_generator.pipeline import run_pipeline  # noqa: E402

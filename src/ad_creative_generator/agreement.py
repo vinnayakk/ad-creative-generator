@@ -50,8 +50,7 @@ def compute_agreement() -> pd.DataFrame:
         f"got {len(merged)} — check for brand-name or variant_number mismatches"
     )
 
-    # ---- True per-criterion agreement, both directions, now that human
-    # labels are structured the same way the judge's are. ----
+    # ---- True per-criterion agreement ----
     print(f"Per-criterion agreement across all {len(merged)} variants:\n")
     rows = []
     for human_col, judge_col in CRITERION_MAP.items():

@@ -151,7 +151,7 @@ CTA: {cta}"""
     return _judge_call(client, CLAIMS_JUDGE_SYSTEM, prompt)
 
 
-# ---------- Criterion 1: Tone — LLM judge, few-shot from docs/rubric.md itself ----------
+# ---------- Criterion 1: Tone — LLM judge, few-shot ----------
 
 TONE_FEWSHOT = """Worked example, using a different brand (Riverbend, an outdoor IPA) so you \
 calibrate on the pattern, not this specific brand:
@@ -193,7 +193,7 @@ Body: {body}"""
     return _judge_call(client, TONE_JUDGE_SYSTEM, prompt)
 
 
-# ---------- Criterion 3: Call to action — does it contradict the offer? ----------
+# ---------- Criterion 3: Call to action ----------
 
 CTA_JUDGE_SYSTEM = """You are grading whether an ad's CTA line is consistent with the \
 brand's actual offer. Pass unless the CTA invents an offer detail (a discount, bonus, \
@@ -221,7 +221,7 @@ CTA to grade: "{cta}\""""
     return _judge_call(client, CTA_JUDGE_SYSTEM, prompt)
 
 
-# ---------- Criterion 5: Visual fit — vision judge, two images ----------
+# ---------- Criterion 5: Visual fit compares two images ----------
 
 VISUAL_JUDGE_SYSTEM = """You are grading a generated ad image against a base product photo \
 and a brand brief. You will see two images: the original, untouched product photo, then the \

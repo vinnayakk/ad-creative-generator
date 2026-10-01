@@ -6,7 +6,7 @@ own rules by an LLM judge before a human ever sees it.
 
 ![Demo](demo.gif)
 
-**TRY IT:** [ad-creative-generator-withjudge.streamlit.app](https://ad-creative-generator-withjudge.streamlit.app/) (bring your own Anthropic + OpenAI API keys).
+**TRY IT:** [Ad Creative Generator with a Judge](https://ad-creative-generator-with-judge.streamlit.app/) (bring your own Anthropic + OpenAI API keys).
 
 ## The problem
 
@@ -112,7 +112,7 @@ python -m ad_creative_generator.pipeline data/velara_headphones_brandbrief.json 
 streamlit run streamlit_app.py   # UI, http://localhost:8501
 ```
 
-No setup needed to just try it: the [live demo](https://ad-creative-generator-withjudge.streamlit.app/)
+No setup needed to just try it: the [live demo](https://ad-creative-generator-with-judge.streamlit.app/)
 runs the same code, bring-your-own-key.
 
 **Using your own data:** the 3 brands in `data/` (headphones, cooking oil,
